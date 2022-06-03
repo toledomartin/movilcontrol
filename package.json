@@ -1,0 +1,20 @@
+{
+  "name": "movilcontrol",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toledomartin/movilcontrol.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/toledomartin/movilcontrol/issues"
+  },
+  "homepage": "https://github.com/toledomartin/movilcontrol#readme"
+}
