@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <title>Nuevo Usuario</title>
+</head>
+<style>
+    .container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+    }
+
+    .formulario {
+        width: auto;
+    }
+
+    .inputError{
+        display: none;
+    }
+
+    .invalid-tooltip{
+        display: block;
+    }
+
+    
+</style>
+
+<body>
+
+    <div class="container">
+        <div class="bd-example">
+            <h1 class="titulo">Nuevo Usuario</h1>
+            <form class="row g-3 needs-validation formulario" id="formulario" novalidate="">
+                <div class="col-md-6 position-relative" id="grupoapellido">
+                    <label for="apellido" class="form-label">Apellido</label>
+                    <input type="text" class="form-control" id="apellido" required="">
+                    <!-- <div class="valid-tooltip">Completado!</div> -->
+                    <div class="inputError">No se permiten caracteres especiales o campo vacío.</div>
+                </div>
+                <div class="col-md-6 position-relative" id="gruponombre">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" required="">
+                    <!-- <div class="valid-tooltip">Completado!</div> -->
+                    <div class="inputError">No se permiten caracteres especiales o campo vacío.</div>
+                </div>
+                <div class="col-md-4 position-relative" id="grupousuario">
+                    <label for="usuario" class="form-label">Usuario</label>
+                    <input type="text" class="form-control" id="usuario" required="">
+                    <!-- <div class="valid-tooltip">Completado!</div> -->
+                    <div class="inputError">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</div>
+                </div>
+                <div class="col-md-4 position-relative" id="grupocontraseña">
+                    <label for="contraseña" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="contraseña" required="">
+                    <!-- <div class="valid-tooltip">Completado!</div> -->
+                    <div class="inputError">La contraseña tiene que ser de 4 a 12 dígitos.</div>
+                </div>
+                <div class="col-md-4 position-relative" id="grupoconfirmarContraseña">
+                    <label for="confirmarContraseña" class="form-label">Confirmar contraseña</label>
+                    <input type="password" class="form-control" id="confirmarContraseña" required="">
+                    <!-- <div class="valid-tooltip">Completado!</div> -->
+                    <div class="inputError">Las contraseñas no coinciden.</div>
+                </div>
+                <div class="col-md-6 position-relative" id="grupoemail">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="text" class="form-control" id="email" required="">
+                    <!-- <div class="valid-tooltip">Completado!</div> -->
+                    <div class="inputError">El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.</div>
+                </div>
+                <div class="col-md-6 position-relative" id="grupotelefono">
+                    <label for="telefono" class="form-label">Telefono</label>
+                    <input type="text" class="form-control" id="telefono" required="">
+                    <!-- <div class="valid-tooltip">Completado!</div> -->
+                    <div class="inputError">El telefono solo puede contener numeros y el maximo son 14 dígitos.</div>
+                </div>
+                <div class="col-md-6 position-relative" id="grupoempresa">
+                    <label for="empresa" class="form-label">Empresa</label>
+                    <select class="form-select" id="empresa" required="">
+                        <option selected="" disabled="" value="0">Seleccionar empresa</option>
+                        <option value="1">Opcion 1</option>
+                        <option value="2">Opcion 2</option>
+                    </select>
+                    <!-- <div class="valid-tooltip">Completado!</div> -->
+                    <div class="inputError">Debe seleccionar una opción.</div>
+                </div>
+                <div class="col-md-6 position-relative" id="grupogrupo">
+                    <label for="grupo" class="form-label">Grupo</label>
+                    <select class="form-select" id="grupo" required="">
+                        <option selected="" disabled="" value="">Seleccionar grupo</option>
+                        <option value="1">Opcion 1</option>
+                        <option value="2">Opcion 2</option>
+                    </select>
+                    <!-- <div class="valid-tooltip">Completado!</div> -->
+                    <div class="inputError">Debe seleccionar una opción.</div>
+                </div>
+                <div class="col-1">
+                    <button class="btn btn-primary" type="submit">Confirmar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+  <script>        
+
+    const formulario = document.getElementById('formulario');
+    const inputs = document.querySelectorAll('#formulario input');
+    const selects = document.querySelectorAll('#formulario select');
+
+
+    const expresiones = {
+        usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
+        nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
+        contraseña: /^.{4,12}$/, // 4 a 12 digitos.
+        email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+        telefono: /^\d{7,14}$/ // 7 a 14 numeros.
+    }
+
+    const campos =  {
+        apellido: false,
+        nombre: false,
+        usuario: false,
+        contraseña: false,
+        email: false,
+        telefono: false,
+        empresa: false,
+        grupo: false
+    }
+
+    const validarFormulario = (e) => {
+        switch (e.target.id){
+            case "apellido":
+                validarCampo(expresiones.nombre, e.target);
+            break;
+
+            case "nombre":
+                validarCampo(expresiones.nombre, e.target);            
+            break;
+
+            case "usuario":
+                validarCampo(expresiones.usuario, e.target);            
+            break;
+
+            case "contraseña":
+                validarCampo(expresiones.contraseña, e.target);
+                validarContraseña();
+            break;
+
+            case "confirmarContraseña":
+                validarContraseña();
+            break;
+
+            case "email":
+                validarCampo(expresiones.email, e.target);
+            break;
+
+            case "telefono":
+                validarCampo(expresiones.telefono, e.target);
+            break;
+
+            case "empresa":
+                validarSelect(e.target);
+            break;
+
+            case "grupo":
+                validarSelect(e.target);
+            break;
+
+        }
+    }
+
+    const validarCampo = (expresion, input) => {
+        if(expresion.test(input.value)){
+            document.getElementById(input.id).classList.add("is-valid");
+            document.getElementById(input.id).classList.remove("is-invalid");
+            document.querySelector(`#grupo${input.id} div`).classList.add('inputError');
+            document.querySelector(`#grupo${input.id} div`).classList.remove('invalid-tooltip');
+            campos[input.id] = true;
+        }
+        else{
+            document.getElementById(input.id).classList.remove("is-valid");
+            document.getElementById(input.id).classList.add("is-invalid");
+            document.querySelector(`#grupo${input.id} div`).classList.remove('inputError');
+            document.querySelector(`#grupo${input.id} div`).classList.add('invalid-tooltip');
+            campos[input.id] = false;
+        }
+    }
+
+    const validarContraseña = () => {
+        const inputContraseña1 = document.getElementById("contraseña").value;
+        const inputContraseña2 = document.getElementById("confirmarContraseña").value;
+
+        if(inputContraseña1 != inputContraseña2){
+            document.getElementById(`confirmarContraseña`).classList.remove("is-valid");
+            document.getElementById(`confirmarContraseña`).classList.add("is-invalid");
+            document.querySelector(`#grupoconfirmarContraseña div`).classList.remove('inputError');
+            document.querySelector(`#grupoconfirmarContraseña div`).classList.add('invalid-tooltip');
+            campos["contraseña"] = false;
+        }
+        else{
+            document.getElementById(`confirmarContraseña`).classList.add("is-valid");
+            document.getElementById(`confirmarContraseña`).classList.remove("is-invalid");
+            document.querySelector(`#grupoconfirmarContraseña div`).classList.add('inputError');
+            document.querySelector(`#grupoconfirmarContraseña div`).classList.remove('invalid-tooltip');
+            campos["contraseña"] = true;
+        }
+    }
+
+    const validarSelect = (select) => {
+        const selectIndex = document.getElementById(select.id).selectedIndex;
+        if(selectIndex != 0){
+            document.getElementById(select.id).classList.add("is-valid");
+            document.getElementById(select.id).classList.remove("is-invalid");
+            document.querySelector(`#grupo${select.id} div`).classList.add('inputError');
+            document.querySelector(`#grupo${select.id} div`).classList.remove('invalid-tooltip');
+            campos[select.id] = true;
+        }
+        else{
+            document.getElementById(select.id).classList.remove("is-valid");
+            document.getElementById(select.id).classList.add("is-invalid");
+            document.querySelector(`#grupo${select.id} div`).classList.remove('inputError');
+            document.querySelector(`#grupo${select.id} div`).classList.add('invalid-tooltip');
+            campos[select.id] = false;
+        }
+
+    }
+
+
+    inputs.forEach( (input)=> { 
+        input.addEventListener('keyup', validarFormulario);
+        input.addEventListener('blur', validarFormulario);
+    })
+
+    
+    selects.forEach( (select)=> { 
+        select.addEventListener('click', validarFormulario);
+        // select.addEventListener('blur', validarFormulario);
+    })
+
+    formulario.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+
+        if(campos.apellido && campos.nombre && campos.usuario && campos.contraseña && campos.email &&
+           campos.telefono && campos.empresa && campos.grupo && campos.empresa && campos.grupo){
+            formulario.reset();
+
+            alert("datos enviados")
+            
+        }
+        else{
+            alert("faltan campos por completar")
+        }
+
+    });
+
+</script> 
+</body>
+</html>
